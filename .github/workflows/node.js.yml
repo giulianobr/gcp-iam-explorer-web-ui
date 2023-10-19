@@ -39,6 +39,7 @@ jobs:
     - id: 'gcloud'
       name: Copy from Bucket
       run: |-
+        pwd
         rm roles.json
         gcloud storage cp gs://artifacts.giulianobr.appspot.com/roles.json .
 
