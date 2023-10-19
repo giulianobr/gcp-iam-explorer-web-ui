@@ -56,12 +56,12 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v2
       with:
-        path: out/_next
+        path: out
 
     - name: Setup Pages
       uses: actions/configure-pages@v3
       with:
-        static_site_generator: out/_next
+        static_site_generator: out
 
   # Deployment job
   deploy:
