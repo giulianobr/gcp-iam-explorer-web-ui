@@ -25,6 +25,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: '${{ secrets.GCP_SA }}'
+
+    # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
+
+    - id: 'gcloud'
+      name: Copy from Bucket
+      run: |-
+        rm roles.json
+        gcloud storage cp gs://artifacts.giulianobr.appspot.com/roles.json .
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
